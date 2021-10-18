@@ -1,0 +1,21 @@
+import discord
+
+client = discord.Client()
+
+bad = ['ㅅㅂ','시발','씨발,^^ㅣ발']
+
+@client.event
+async def on_ready():
+    print(client.user.id)
+    print("ready")
+    game = discord.Game("!투표")
+    await client.change_presence(status=discord.Status.online, activity=game)
+
+@client.event
+async def on_message(message):
+
+message_contant=message.content 
+for i in bad: 
+    if i in message_contant: 
+        await message.channel.send('어허') 
+        await message.delete()
